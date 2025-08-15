@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ===== Палитра ===== */
+:root {
+    --brand: #2e7d32; /* зелёный основной */
+    --brand-dark: #1b5e20; /* наведение/актив */
+    --text: #333;
+    --bg: #fff;
+    --elev: #f6f6f6; /* мягкая подсветка карточек */
+}
+
+/* ===== База ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Шапка и навигация ===== */
+header {
+    background: #fff;
+    border-bottom: 3px solid var(--brand);
+}
+
+nav .container {
+    display: flex;
+    align-items: center;           /* вертикально центрируем всё */
+    gap: 16px; flex-wrap: wrap;
+    padding: 12px 0;
+    position: relative;
+}
+
+/* Бренд слева: логотип + имя */
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* расстояние между лого и текстом */
+}
+
+.brand__logo {
+    width: 156px;
+    height: 110px;
+    object-fit: contain;
+    display: block;
+}
+
+.brand__name {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    color: var(--brand);
+    text-decoration: none;
+}
+
+    .brand__name:hover {
+        color: var(--brand-dark);
+        text-decoration: none;
+    }
+
+
+
+/* Меню справа */
+.menu {
+    margin-left: 12px;
+    /* margin-left removed to bring menu closer to logo */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: var(--brand);
+    font-weight: 500;
+    transition: color .2s ease;
+}
+.menu a:hover { color: var(--brand-dark); }
+
+/* Подменю */
+.has-sub { position: relative; }
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    list-style: none;
+    background: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    z-index: 10;
+}
+.has-sub:hover .submenu { display: block; }
+.submenu li { padding: 5px 20px; }
+.submenu a { color: var(--text); }
+.submenu a:hover { color: var(--brand); }
+
+/* Бургер */
+.burger {
+    display: none;
+    margin-left: auto; /* на очень узких экранах кнопка будет справа от бренда */
+    background: none;
+    border: 0;
+    font-size: 26px;
+    line-height: 1;
+    color: var(--brand);
+    cursor: pointer;
+}
+
+/* Адаптив меню */
+@media (max-width: 900px) {
+    .burger { display: block; }
+    .menu {
+    margin-left: 12px;
+        display: none;             /* скрыто по умолчанию */
+        flex-direction: column;
+        gap: 14px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 16px 20px;
+        background: #fff;
+        border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    nav.open .menu { display: flex; }
+}
+
+/* ===== Заголовки ===== */
+h1, h2 { color: var(--brand); }
+h2 { text-align: center; margin: 40px 0; }
+
+/* ===== Секции ===== */
+section { padding: 60px 0; }
+section:nth-of-type(even) { background: #fff; }
+
+/* ===== Карточки ассортимента ===== */
+#services article {
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    background: #fff;
+}
+#services article h3 { margin-bottom: 10px; }
+
+/* раскладка: карусель слева, текст справа */
+#services article .product-row {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-top: 40px;
+}
+#services article .product-media {
+    flex: 0 0 520px;
+    max-width: 520px;
+}
+#services article .product-text {
+    color: var(--text);
+    flex: 1 1 auto;
+}
+
+/* ===== Карусель ===== */
+.carousel {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    height: 260px;
+    background: #fff;
+}
+
+    .carousel .slides {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        align-items: center;
+        justify-items: center;
+        transition: transform .5s ease-in-out;
+    }
+
+        /* КЛЮЧЕВОЕ: дать grid-элементам ужиматься */
+        .carousel .slides > * {
+            min-width: 0;
+            min-height: 0;
+        }
+
+        /* Картинка вписывается в рамку, не вылезает */
+        .carousel .slides img {
+            width: 100%; /* вместе с height включает object-fit корректно */
+            height: 100%;
+            object-fit: contain; /* полностью видна, без обрезки */
+            display: block; /* убираем базовую линию */
+            background: transparent;
+        }
+
+
+/* стрелки */
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.35);
+    color: #fff;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    user-select: none;
+}
+.carousel-control.prev { left: 8px; }
+.carousel-control.next { right: 8px; }
+.carousel-control:hover { background: rgba(0,0,0,.5); }
+.carousel-control:focus { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+
+
+
+
+/* ===== Контакты в шапке ===== */
+nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: 20px;
+}
+.menu {
+    margin-left: 0; /* убираем автоотступ */
+    
+}
+.header-contacts {
+    font-size: 14px;
+    color: var(--brand);
+    white-space: nowrap;
+}
+.header-contacts strong {
+    font-weight: 700;
+}
+@media (max-width: 900px) {
+    nav .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .header-contacts {
+        white-space: normal;
+        margin-top: 8px;
+    }
+}
+
+
+/* ===== Выравнивание меню и контактов справа ===== */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+     /* весь блок уезжает вправо */
+}
+
+/* ===== Контакты в шапке (текст, без ссылок) ===== */
+.header-contacts {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--brand);
+    white-space: nowrap;
+}
+.header-contacts .hc-label { font-weight: 700; color: var(--brand-dark); }
+.header-contacts strong { font-weight: 700; }
+.header-contacts .hc-sep { opacity: .6; }
+
+@media (max-width: 900px) {
+    .nav-right { 
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-left: 0;
+        width: 100%;
+    }
+    .header-contacts { 
+        white-space: normal; 
+        font-size: 14px; 
+    }
+}
+
+
+/* ===== Правки компоновки навбара ===== */
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    margin-left: 16px;
+     /* растягиваем, чтобы контакты можно было прижать вправо */
+}
+.menu{ 
+    margin-left: 0; /* больше не прижимаем меню вправо */
+}
+.header-contacts {
+     /* уходит вправо */
+    display:flex;
+    align-items:center;
+    gap:10px;
+    line-height: 1.3;
+    font-size: 14px;
+    white-space: nowrap;
+}
+.hc-label{ font-weight:700; color: var(--brand); }
+.hc-phone strong, .hc-email strong{ font-weight:700; color: var(--brand); }
+@media (max-width: 900px){
+    .nav-right{ gap:14px; }
+    .header-contacts{ white-space: normal; font-size: 13px; }
+}
+
+/* ===== Подвал ===== */
+
+footer { background: #fff; padding: 20px 0; }
+footer p { text-align: center; font-size: 14px; color: var(--text); }
+
+/* ===== Адаптив карточек ===== */
+@media (max-width: 900px) {
+    #services article .product-row { flex-direction: column; align-items: stretch; }
+    #services article .product-media { flex: 0 0 auto; max-width: 100%; }
+    .carousel { max-width: 100%; height: 220px; }
+}
+
+
+
+/* === Contacts dropdown as hover curtain (slides down) === */
+.header-contacts { position: relative; }
+.contacts-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    box-shadow: 0 6px 16px rgba(0,0,0,.12);
+    border-radius: 8px;
+    padding: 12px 16px;
+    overflow: hidden;
+    /* скрыто по умолчанию */
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    max-height: 0;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease, max-height .25s ease;
+    z-index: 20;
+    min-width: 280px;
+}
+.header-contacts:hover .contacts-dropdown,
+.header-contacts:focus-within .contacts-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    max-height: 500px;
+}
+/* Метка "Контакты" как якорь */
+.hc-label { cursor: default; font-weight: 500; color: var(--brand); }
+
+
+
+/* === Header alignment === */
+nav .container { display:flex; align-items:center; gap: 24px; }
+.nav-right {  display:flex; align-items:center; gap: 24px; }
+.brand { display:flex; align-items:center; }
+.brand__logo { display:block; height: 120px; width: 230px; }
+@media (max-width: 900px) {
+  .nav-right { width: 100%; justify-content: flex-start; gap: 16px; }
+}
+
+
+/* === Scroll to top button === */
+#scrollTopBtn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.2s ease;
+    z-index: 999;
+}
+#scrollTopBtn:hover {
+    background: var(--brand-dark);
+}
+#scrollTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Force nav-right not to auto-push to edge */
+.nav-right { margin-left: 0 !important; }
+
+
+/* === FINAL header layout overrides === */
+nav .container { justify-content: flex-start; }
+.nav-right { margin-left: 16px; gap: 16px; flex: 0 0 auto; }
+.menu { flex: 0 0 auto; }
+
+
+/* === Sticky header (cross-browser) === */
+header{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+}
+/* anchor offset so headings aren't hidden under sticky header */
+section[id], article[id], [id].anchor { scroll-margin-top: 120px; }
+
+
+/* Contacts dropdown open via JS class */
+.header-contacts.open .contacts-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    max-height: 500px;
+}
+
+
+/* === Theme toggle button === */
+#themeToggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--brand);
+}
+#themeToggle:hover { color: var(--brand-dark); }
+
+/* === Dark theme === */
+:root {
+  --brand-light: #3fbf5a; /* светлее для тёмной темы */
+}
+body.dark {
+  --bg: #1e1e1e;
+  --text: #eee;
+  --brand: var(--brand-light);
+  background: var(--bg);
+  color: var(--text);
+}
+body.dark header {
+  background: #2a2a2a;
+  border-bottom-color: var(--brand);
+}
+body.dark footer {
+  background: #2a2a2a;
+  color: var(--text);
+}
+body.dark .menu a { color: var(--brand); }
+body.dark .submenu { background: #2a2a2a; }
+body.dark .carousel-control { background: rgba(255,255,255,.2); color: #fff; }
+
+
+/* === Dark Theme === */
+html.theme-dark {
+    --bg: #1e1e1e;
+    --text: #e9e9e9;
+    --elev: #2a2a2a; /* фон карточек — чуть светлее фона */
+    --brand: #5ac169;
+    --brand-dark: #3ea856;
+}
+
+    html.theme-dark body {
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    html.theme-dark header {
+        background: #1b1b1b;
+        border-bottom-color: var(--brand);
+    }
+
+    html.theme-dark .submenu,
+    html.theme-dark .contacts-dropdown {
+        background: #232323;
+        box-shadow: 0 6px 16px rgba(0,0,0,.45);
+    }
+
+    html.theme-dark .carousel-control {
+        background: rgba(255,255,255,.15);
+        color: #fff;
+    }
+
+        html.theme-dark .carousel-control:hover {
+            background: rgba(255,255,255,.3);
+        }
+
+    html.theme-dark .menu a {
+        color: var(--brand);
+    }
+
+    html.theme-dark #services article {
+        background: var(--elev);
+        box-shadow: 0 2px 8px rgba(0,0,0,.35);
+    }
+
+    html.theme-dark footer {
+        background: #1b1b1b;
+    }
+
+/* === Generic product card styles (apply site-wide) === */
+.product {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.product h3 { margin-bottom: 10px; color: var(--brand); }
+.product .product-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 24px;
+}
+.product .product-media { flex: 0 0 520px; max-width: 520px; }
+.product .product-text { flex: 1 1 auto; color: var(--text); }
+
+@media (max-width: 900px) {
+  .product .product-row { flex-direction: column; align-items: stretch; }
+  .product .product-media { flex: 0 0 auto; max-width: 100%; }
+  .carousel { max-width: 100%; height: 220px; }
+}
+
+/* Dark theme elevation for product cards */
+html.theme-dark .product {
+  background: var(--elev);
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+
+/* === Theme switch (checkbox + slider) === */
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  user-select: none;
+}
+.theme-switch input {
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+.theme-switch .switch {
+  position: relative;
+  width: 44px; height: 24px;
+  border-radius: 999px;
+  background: #cfd8dc;
+  transition: background .2s ease;
+  box-shadow: inset 0 0 0 2px rgba(0,0,0,.05);
+}
+.theme-switch .switch::after {
+  content: "";
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform .2s ease;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+.theme-switch input:checked + .switch { background: var(--brand); }
+.theme-switch input:checked + .switch::after { transform: translateX(20px); }
+.theme-switch .theme-text { font-size: 14px; color: var(--brand); }
+html.theme-dark .theme-switch .switch { background: #3b3b3b; }
+
+html.theme-dark .carousel .slides img {
+    background: var(--elev); /* фон картинок в темной теме */
+}
+
+/* === Dark theme: soften bright images and add subtle overlay in carousels === */
+html.theme-dark .carousel { background: var(--elev); }
+html.theme-dark .carousel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.12); /* едва заметное затемнение поверх содержимого */
+    pointer-events: none;
+    z-index: 0;
+}
+/* убедимся, что кнопки над оверлеем */
+.carousel-control { z-index: 2; }
+
+/* чуть приглушим сами изображения */
+html.theme-dark .carousel .slides img {
+    background: transparent;
+    filter: brightness(0.9) contrast(1.03);
+    border-radius: 6px;
+}
+
+/* Dark overlay above slides to tame bright images on index */
+html.theme-dark .carousel::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.18);
+    pointer-events:none;
+    z-index: 2; /* above slides */
+}
+/* ensure slides stay below overlay, controls above both */
+.carousel .slides{ position: relative; z-index: 1; }
+.carousel-control{ position: absolute; z-index: 3; }
+
+/* Dark theme: remove white background from even sections */
+html.theme-dark section:nth-of-type(even) {
+    background: transparent; /* inherits page dark bg */
+}
+
+.carousel .slides { line-height: 0; }
+
+.carousel .slides img { display: block; margin: 0 auto; }
+
+.carousel .slides img { object-position: center; }
+
+/* Ensure carousel images always fit inside the frame */
+.carousel { overflow: hidden; }
+.carousel .slides { align-items: center; justify-items: center; }
+.carousel .slides img {
+    max-width: 100%;
+    width: auto;          /* don't force 100% width to avoid overflow */
+    height: 100%;         /* keep fixed frame height */
+    max-height: 100%;
+    object-fit: contain;  /* fully visible inside 520x260 */
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* -- Minimal fix: images fit the carousel frame strictly -- */
+.carousel .slides img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+
+/* --- FINAL minimal carousel fit fix --- */
+.carousel .slides{ height:100%; }              /* слайды по высоте кадра */
+.carousel .slides img{
+  width: auto !important;                      /* не тянем по ширине */
+  max-width: 100% !important;                  /* но не больше рамки */
+  height: 100% !important;                     /* вписываем по высоте */
+  max-height: 100% !important;
+  object-fit: contain;                         
+  display: block;
+}
