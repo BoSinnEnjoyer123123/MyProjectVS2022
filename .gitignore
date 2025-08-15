@@ -9,3 +9,7 @@
 bin/
 obj/
 TestResults/
+
+# Personal tools
+auto-git.ps1
+logs/
