@@ -491,6 +491,56 @@ h3 {
   padding: 22px;
 }
 
+.branch {
+  background: var(--color-bg);
+}
+
+.branch-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 32px;
+  align-items: center;
+  padding: 32px;
+  background: #173621;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.branch-panel h2,
+.branch-panel p {
+  color: #fff;
+}
+
+.branch-panel p:not(.eyebrow) {
+  max-width: 700px;
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 17px;
+}
+
+.branch-panel .eyebrow {
+  color: #a7dfb3;
+}
+
+.branch-panel img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.branch-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.branch-panel .btn--secondary {
+  background: #ffffff;
+  border-color: #ffffff;
+}
+
 .contacts {
   background: var(--color-bg);
 }
@@ -627,6 +677,10 @@ h3 {
 
   .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .branch-panel {
+    grid-template-columns: 1fr;
   }
 
   .contact-actions {
@@ -787,6 +841,18 @@ h3 {
 
   .product-card img {
     height: 220px;
+  }
+
+  .branch-panel {
+    padding: 24px;
+  }
+
+  .branch-panel img {
+    height: 190px;
+  }
+
+  .branch-panel__actions {
+    display: grid;
   }
 
   .product-card dl div {
