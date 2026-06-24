@@ -515,6 +515,75 @@ h3 {
   text-decoration: underline;
 }
 
+.task-catalog {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.task-card {
+  display: flex;
+  min-width: 0;
+  min-height: 238px;
+  flex-direction: column;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(21, 23, 26, 0.1);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.task-card:hover {
+  border-color: rgba(181, 40, 47, 0.28);
+  box-shadow: 0 16px 34px rgba(19, 23, 27, 0.12);
+  transform: translateY(-2px);
+}
+
+.task-card__tag {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 0 14px;
+  padding: 5px 8px;
+  color: #fff;
+  background: var(--color-text);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 860;
+}
+
+.task-card h3 {
+  font-size: 20px;
+}
+
+.task-card p:not(.task-card__tag) {
+  margin: 10px 0 18px;
+  color: var(--color-muted);
+}
+
+.task-card--accent {
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(181, 40, 47, 0.95), rgba(21, 23, 26, 0.96)),
+    var(--color-brand);
+  border-color: rgba(181, 40, 47, 0.2);
+}
+
+.task-card--accent .task-card__tag {
+  color: var(--color-text);
+  background: #fff;
+}
+
+.task-card--accent h3,
+.task-card--accent p:not(.task-card__tag),
+.task-card--accent .text-link {
+  color: #fff;
+}
+
+.task-card--accent .text-link::after {
+  color: rgba(255, 255, 255, 0.75);
+}
+
 .split-layout {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1fr);
@@ -929,7 +998,8 @@ h3 {
 
   .facts__grid,
   .steps,
-  .advantage-grid {
+  .advantage-grid,
+  .task-catalog {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -1107,8 +1177,13 @@ h3 {
   .facts__grid,
   .product-grid,
   .steps,
-  .advantage-grid {
+  .advantage-grid,
+  .task-catalog {
     grid-template-columns: 1fr;
+  }
+
+  .task-card {
+    min-height: 0;
   }
 
   .fact-card {
