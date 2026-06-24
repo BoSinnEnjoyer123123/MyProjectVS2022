@@ -561,6 +561,84 @@ h3 {
   color: var(--color-text);
 }
 
+.request-panel {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.58fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  margin-top: 34px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(21, 23, 26, 0.12);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.request-panel__intro p:not(.eyebrow) {
+  margin: 12px 0 0;
+  color: var(--color-muted);
+}
+
+.request-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.request-table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.params-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.params-table caption {
+  display: block;
+  width: 100%;
+  padding: 0 0 10px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 760;
+  text-align: left;
+}
+
+.params-table th,
+.params-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.params-table th {
+  color: #fff;
+  background: var(--color-text);
+  font-size: 14px;
+}
+
+.params-table td:first-child {
+  width: 34%;
+  color: var(--color-text);
+  font-weight: 820;
+}
+
+.params-table td:last-child {
+  color: var(--color-muted);
+}
+
+.params-table tr:last-child td {
+  border-bottom: 0;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -966,7 +1044,8 @@ h3 {
   }
 
   .hero__actions .btn,
-  .contact-actions .btn {
+  .contact-actions .btn,
+  .request-panel__actions .btn {
     width: 100%;
   }
 
@@ -1067,6 +1146,50 @@ h3 {
 
   .check-list li {
     padding-right: 16px;
+  }
+
+  .request-panel {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .request-panel__actions {
+    display: grid;
+  }
+
+  .params-table {
+    min-width: 0;
+  }
+
+  .params-table thead {
+    display: none;
+  }
+
+  .params-table,
+  .params-table tbody,
+  .params-table tr,
+  .params-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .params-table tr {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .params-table tr:last-child {
+    border-bottom: 0;
+  }
+
+  .params-table td {
+    padding: 0 14px;
+    border-bottom: 0;
+  }
+
+  .params-table td:first-child {
+    width: 100%;
+    margin-bottom: 4px;
   }
 
   .contact-panel {
