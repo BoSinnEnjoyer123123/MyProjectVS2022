@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bosinnenjoyer123123.github.io/MyProjectVS2022/sitemap.xml
