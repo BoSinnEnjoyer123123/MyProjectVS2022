@@ -2,7 +2,7 @@
 
 ## Current progress
 
-Completed: 9 of 10 stages.
+Completed: 10 of 10 stages.
 
 1. Information architecture refocused on meat-processing saw tools - done.
 2. Main HTML content rewritten - done.
@@ -13,7 +13,7 @@ Completed: 9 of 10 stages.
 7. Task-based micro catalog - done.
 8. Trust, delivery conditions and skinning section expansion - done.
 9. Analytics - done with Yandex Metrika `110111330`.
-10. Final acceptance pass - remaining.
+10. Final acceptance pass - done.
 
 ## Public URL
 
@@ -60,7 +60,7 @@ Tracked goals:
 
 ### Stage 10. Final acceptance
 
-After analytics or after the decision to skip analytics:
+Done on June 24, 2026.
 
 - run public URL checks;
 - run mobile and desktop layout checks;
