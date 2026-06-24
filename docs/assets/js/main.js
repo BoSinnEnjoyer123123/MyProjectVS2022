@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.burger');
   const menu = document.getElementById('main-menu');
   const scrollBtn = document.getElementById('scrollTopBtn');
+  const metrikaId = 110111330;
+
+  const sendGoal = (goal) => {
+    if (typeof window.ym === 'function') {
+      window.ym(metrikaId, 'reachGoal', goal);
+    }
+  };
 
   const closeMenu = () => {
     if (!nav || !burger) return;
@@ -22,6 +29,42 @@ document.addEventListener('DOMContentLoaded', () => {
       if (event.target.closest('a')) closeMenu();
     });
   }
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href]');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    const text = link.textContent.toLowerCase();
+    let decodedHref = href;
+
+    try {
+      decodedHref = decodeURIComponent(href).toLowerCase();
+    } catch {
+      decodedHref = href.toLowerCase();
+    }
+
+    if (link.closest('#task-catalog')) {
+      sendGoal('catalog_click');
+    }
+
+    if (href.startsWith('tel:')) {
+      sendGoal('phone_click');
+      return;
+    }
+
+    if (href.startsWith('mailto:')) {
+      sendGoal('email_click');
+
+      if (decodedHref.includes('сняти') || text.includes('сняти')) {
+        sendGoal('skinning_request_click');
+      }
+
+      if (decodedHref.includes('полотн') || text.includes('полотн')) {
+        sendGoal('blade_request_click');
+      }
+    }
+  });
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') closeMenu();

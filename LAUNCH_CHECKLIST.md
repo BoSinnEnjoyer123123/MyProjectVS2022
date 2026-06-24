@@ -2,7 +2,7 @@
 
 ## Current progress
 
-Completed: 8 of 10 stages.
+Completed: 9 of 10 stages.
 
 1. Information architecture refocused on meat-processing saw tools - done.
 2. Main HTML content rewritten - done.
@@ -12,8 +12,8 @@ Completed: 8 of 10 stages.
 6. Blade request guidance block - done.
 7. Task-based micro catalog - done.
 8. Trust, delivery conditions and skinning section expansion - done.
-9. Analytics - waiting for counter ID.
-10. Final acceptance pass - current stage.
+9. Analytics - done with Yandex Metrika `110111330`.
+10. Final acceptance pass - remaining.
 
 ## Public URL
 
@@ -31,10 +31,10 @@ https://bosinnenjoyer123123.github.io/MyProjectVS2022/
 
 ## Required from site owner
 
-To finish analytics:
+Analytics added:
 
-- Yandex Metrika counter ID or Google Analytics measurement ID.
-- Which goals are required: phone clicks, email clicks, request CTA clicks, catalog clicks.
+- Yandex Metrika counter ID: `110111330`.
+- Goals added in `docs/assets/js/main.js`: `phone_click`, `email_click`, `blade_request_click`, `skinning_request_click`, `catalog_click`.
 
 To strengthen trust:
 
@@ -48,15 +48,15 @@ To strengthen trust:
 
 ### Stage 9. Analytics
 
-Blocked until a counter ID is provided.
+Done.
 
-Planned goals:
+Tracked goals:
 
-- click on phone links;
-- click on email links;
-- click on "Отправить параметры полотна";
-- click on "Отправить данные по снятию кожи";
-- click on catalog task cards.
+- click on phone links: `phone_click`;
+- click on email links: `email_click`;
+- click on "Отправить параметры полотна": `blade_request_click`;
+- click on "Отправить данные по снятию кожи": `skinning_request_click`;
+- click on catalog task cards: `catalog_click`.
 
 ### Stage 10. Final acceptance
 
