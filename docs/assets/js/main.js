@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!link) return;
 
     const href = link.getAttribute('href') || '';
+    const customGoal = link.dataset.goal;
     const text = link.textContent.toLowerCase();
     let decodedHref = href;
 
@@ -46,6 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (link.closest('#task-catalog')) {
       sendGoal('catalog_click');
+    }
+
+    if (customGoal) {
+      sendGoal(customGoal);
+      return;
     }
 
     if (href.startsWith('tel:')) {
